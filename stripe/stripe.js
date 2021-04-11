@@ -39,6 +39,4 @@ router.get('/price/:id', (req, res) => {
     })
 })
 
-
-
 module.exports = router;

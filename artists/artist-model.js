@@ -12,3 +12,4 @@ function findAll(){
 function findByArtistName(name){
     return db("Artists").where("artist_name", name)
 }
+
