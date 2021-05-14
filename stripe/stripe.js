@@ -39,4 +39,22 @@ router.get('/price/:id', (req, res) => {
     })
 })
 
+// Get Product & Price by ProductID:
+router.get('/pnp/:id', (req, res) => {
+    const productId = req.params.id;
+
+    stripe.products.retrieve(productId)
+    .then(item => {
+        stripe.prices.list({
+            product: productId
+        })
+        .then(price => {
+            res.status(200).json({ product: item, price: price })
+        })
+        .catch(err => {
+            res.status(500).json({ err, errorMessage: "An error occured while attempting to fetch data."})
+        })
+    })    
+}) 
+
 module.exports = router;
